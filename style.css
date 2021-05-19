@@ -30,9 +30,9 @@ td {
 }
 
 td:hover {
-    box-shadow: 0px 0px 8px 1px #ddd;
-    /* transform: scale(1.04); */
-    /* background-color: #f0f0f0; */
+    /* box-shadow: 0px 0px 8px 1px #4078c022; */
+    transform: scale(0.9);
+    background-color: #4078c056;
 }
 
 table {
