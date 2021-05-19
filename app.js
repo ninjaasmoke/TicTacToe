@@ -37,14 +37,8 @@ function turnClick(square) {
         // if no one has played that square
         // if square is played, the value will be either X or O => string or null
         turn(square.target.id, huPlayer);
-        // if (!checkTie()) // bad logic
-        turn(bestSpot(), aiPlayer); // checks if board is not full & allows ai to play
-
-
-        // if (!checkTie()) { // my logic TODO: change if something breaks in future
-        //     turn(square.target.id, huPlayer);
-        //     turn(bestSpot(), aiPlayer);
-        // }
+        if (!checkTie()) // bad logic
+            turn(bestSpot(), aiPlayer); // checks if board is not full & allows ai to play
     }
 
 }
@@ -80,7 +74,7 @@ function checkWin(board, player) {
             break;
         }
     }
-    checkTie()
+    // checkTie() // actually good to check for tie before win, but minimax evals to tie always if checked like this
     return gameWon;
 }
 
@@ -120,7 +114,7 @@ function emptySquares() {
 
 // best spot for ai
 function bestSpot() {
-    return emptySquares()[0];
+    return minimax(origBoard, aiPlayer).index;
 }
 
 
@@ -135,4 +129,58 @@ function checkTie() {
         return true;
     }
     return false;
+}
+
+
+// minimax 
+
+function minimax(newBoard, player) {
+    let availSpots = emptySquares();
+
+    if (checkWin(newBoard, huPlayer)) {
+        return { score: -10 };
+    } else if (checkWin(newBoard, aiPlayer)) {
+        return { score: 20 };
+    } else if (availSpots.length === 0) {
+        return { score: 0 };
+    }
+
+    var moves = [];
+    for (let i = 0; i < availSpots.length; i++) {
+        var move = {};
+        move.index = newBoard[availSpots[i]];
+        newBoard[availSpots[i]] = player;
+
+        if (player == aiPlayer) {
+            var result = minimax(newBoard, huPlayer);
+            move.score = result.score;
+        } else {
+            var result = minimax(newBoard, aiPlayer);
+            move.score = result.score;
+        }
+
+        newBoard[availSpots[i]] = move.index;
+        moves.push(move);
+    }
+
+    var bestMove;
+    if (player === aiPlayer) {
+        var bestScore = -10000;
+        for (var i = 0; i < moves.length; i++) {
+            if (moves[i].score > bestScore) {
+                bestScore = moves[i].score;
+                bestMove = i;
+            }
+        }
+    } else {
+        var bestScore = 10000;
+        for (var i = 0; i < moves.length; i++) {
+            if (moves[i].score < bestScore) {
+                bestScore = moves[i].score;
+                bestMove = i;
+            }
+        }
+    }
+
+    return moves[bestMove];
 }
