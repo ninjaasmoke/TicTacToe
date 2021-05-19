@@ -58,15 +58,29 @@ table tr td:last-child {
 }
 
 .endgame {
-    /* display: none; */
+    display: none;
     position: absolute;
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 12rem;
     height: 6rem;
-    background-color: #5050ff75;
+    background-color: #5050ff85;
     border-radius: 4px;
     cursor: pointer;
     font-size: 2rem;
+}
+
+button {
+    outline: none;
+    border: none;
+    background-color: #ddd;
+    padding: 12px 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    box-shadow: 0px 0px 10px 1px #33333327;
 }
