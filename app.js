@@ -71,6 +71,7 @@ function checkWin(board, player) {
 
 // gameover function
 function gameOver(gameWon) {
+
     for (const index of winCombos[gameWon.index]) {
         let d = document.getElementById(index)
         d.style.backgroundColor =
@@ -79,6 +80,7 @@ function gameOver(gameWon) {
     }
 
     for (let i = 0; i < cells.length; i++) {
-        cells[i].removeEventListener('click', turnClick, false)
+        cells[i].removeEventListener('click', turnClick, false);
+        cells[i].style.color = "black"
     }
 }
