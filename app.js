@@ -1,4 +1,4 @@
-var origiBoard;
+var origBoard;
 const huPlayer = '0';
 const aiPlayer = 'X';
 
@@ -21,7 +21,7 @@ startGame();
 //  function to start game
 function startGame() {
     document.querySelector('.endgame').style.display = "none";
-    origiBoard = Array.from(Array(9).keys());
+    origBoard = Array.from(Array(9).keys());
 
     for (let i = 0; i < cells.length; i++) {
         cells[i].innerText = "";
@@ -33,17 +33,23 @@ function startGame() {
 
 // turnClick can be called by both human player & ai
 function turnClick(square) {
-    turn(square.target.id, huPlayer)
+    if (typeof origBoard[square.target.id] == 'number') {
+        // if no one has played that square
+        // if square is played, the value will be either X or O => string
+        turn(square.target.id, huPlayer);
+        if (!checkTie()) turn(bestSpot(), aiPlayer); // checks if board is not full & allows ai to play
+    }
+
 }
 
 
 // actual code to add X & O to the board 
 // also checks foe winner
 function turn(squareId, player) {
-    origiBoard[squareId] = player;
+    origBoard[squareId] = player;
     document.getElementById(squareId).innerText = player;
 
-    let gameWon = checkWin(origiBoard, player);
+    let gameWon = checkWin(origBoard, player);
 
     if (gameWon) gameOver(gameWon);
 }
@@ -83,4 +89,41 @@ function gameOver(gameWon) {
         cells[i].removeEventListener('click', turnClick, false);
         cells[i].style.color = "black"
     }
+    declareWinner(gameWon.player == huPlayer ? 'You Win!' : 'You Lose!')
+
+}
+
+
+// declare winner
+function declareWinner(who) {
+    document.querySelector('.endgame').style.display = "block";
+    document.querySelector('.endgame .text').innerText = who;
+}
+
+// basic ai
+
+
+// returns all empty squares
+function emptySquares() {
+    return origBoard.filter(c => typeof c == "number");
+}
+
+
+// best spot for ai
+function bestSpot() {
+    return emptySquares()[0];
+}
+
+
+// check for a tie
+function checkTie() {
+    if (emptySquares().length == 0) {
+        for (let i = 0; i < cells.length; i++) {
+            cells[i].style.backgroundColor = "green";
+            cells[i].removeEventListener('click', turnClick, false);
+        }
+        declareWinner("Tie Game!");
+        return true;
+    }
+    return false;
 }
