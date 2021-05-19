@@ -95,3 +95,10 @@ button {
 button:hover {
     box-shadow: 0px 0px 10px 1px #33333327;
 }
+
+.gh {
+    cursor: pointer;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
