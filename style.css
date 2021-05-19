@@ -63,9 +63,9 @@ table tr td:last-child {
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 12rem;
+    width: 14rem;
     height: 6rem;
-    background-color: #5050ffff;
+    background-color: #5050fff0;
     border-radius: 4px;
     cursor: pointer;
 }
