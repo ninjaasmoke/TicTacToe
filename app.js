@@ -36,8 +36,14 @@ function turnClick(square) {
     if (typeof origBoard[square.target.id] == 'number') {
         // if no one has played that square
         // if square is played, the value will be either X or O => string
-        turn(square.target.id, huPlayer);
-        if (!checkTie()) turn(bestSpot(), aiPlayer); // checks if board is not full & allows ai to play
+        // turn(square.target.id, huPlayer);
+        // if (!checkTie()) turn(bestSpot(), aiPlayer); // checks if board is not full & allows ai to play
+
+
+        if (!checkTie()) { // my logic TODO: change if something breaks in future
+            turn(square.target.id, huPlayer);
+            turn(bestSpot(), aiPlayer);
+        }
     }
 
 }
@@ -82,12 +88,10 @@ function gameOver(gameWon) {
         let d = document.getElementById(index)
         d.style.backgroundColor =
             gameWon.player == huPlayer ? '#4078c0' : 'red';
-        d.style.color = "white"
     }
 
     for (let i = 0; i < cells.length; i++) {
         cells[i].removeEventListener('click', turnClick, false);
-        cells[i].style.color = "black"
     }
     declareWinner(gameWon.player == huPlayer ? 'You Win!' : 'You Lose!')
 
@@ -119,7 +123,7 @@ function bestSpot() {
 function checkTie() {
     if (emptySquares().length == 0) {
         for (let i = 0; i < cells.length; i++) {
-            cells[i].style.backgroundColor = "green";
+            cells[i].style.backgroundColor = "#6e5494";
             cells[i].removeEventListener('click', turnClick, false);
         }
         declareWinner("Tie Game!");
