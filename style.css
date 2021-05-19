@@ -30,7 +30,7 @@ td {
 }
 
 td:hover {
-    box-shadow: 0px 0px 10px 2px #ddd;
+    box-shadow: 0px 0px 8px 1px #ddd;
     /* transform: scale(1.04); */
     /* background-color: #f0f0f0; */
 }
@@ -38,7 +38,7 @@ td:hover {
 table {
     border-collapse: collapse;
     margin: 20px;
-    box-shadow: 0px 0px 10px 2px #ddd;
+    box-shadow: 0px 0px 8px 1px #ddd;
 }
 
 table tr:first-child td {
