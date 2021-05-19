@@ -21,5 +21,5 @@ With increase in number of possible moves, the time complexity increases exponen
 [Read more](https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning) about Alpha-Beta pruning.
 
 ### Installation & Playing
-Visit [this link]() to play the game. <br/>
+Visit [this link](http://ninjaasmoke.tech/TicTacToe/) to play the game. <br/>
 Download or clone this repo, open ```index.html``` file in a live server.
