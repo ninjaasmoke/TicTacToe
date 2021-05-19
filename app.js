@@ -35,15 +35,16 @@ function startGame() {
 function turnClick(square) {
     if (typeof origBoard[square.target.id] == 'number') {
         // if no one has played that square
-        // if square is played, the value will be either X or O => string
-        // turn(square.target.id, huPlayer);
-        // if (!checkTie()) turn(bestSpot(), aiPlayer); // checks if board is not full & allows ai to play
+        // if square is played, the value will be either X or O => string or null
+        turn(square.target.id, huPlayer);
+        // if (!checkTie()) // bad logic
+        turn(bestSpot(), aiPlayer); // checks if board is not full & allows ai to play
 
 
-        if (!checkTie()) { // my logic TODO: change if something breaks in future
-            turn(square.target.id, huPlayer);
-            turn(bestSpot(), aiPlayer);
-        }
+        // if (!checkTie()) { // my logic TODO: change if something breaks in future
+        //     turn(square.target.id, huPlayer);
+        //     turn(bestSpot(), aiPlayer);
+        // }
     }
 
 }
@@ -53,11 +54,13 @@ function turnClick(square) {
 // also checks foe winner
 function turn(squareId, player) {
     origBoard[squareId] = player;
-    document.getElementById(squareId).innerText = player;
+    let d = document.getElementById(squareId);
+    if (d) {
+        d.innerText = player;
 
-    let gameWon = checkWin(origBoard, player);
-
-    if (gameWon) gameOver(gameWon);
+        let gameWon = checkWin(origBoard, player);
+        if (gameWon) gameOver(gameWon);
+    }
 }
 
 
@@ -77,6 +80,7 @@ function checkWin(board, player) {
             break;
         }
     }
+    checkTie()
     return gameWon;
 }
 
@@ -103,6 +107,7 @@ function declareWinner(who) {
     document.querySelector('.endgame').style.display = "block";
     document.querySelector('.endgame .text').innerText = who;
 }
+
 
 // basic ai
 
