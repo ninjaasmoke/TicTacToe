@@ -56,3 +56,17 @@ table tr td:first-child {
 table tr td:last-child {
     border-right: 0;
 }
+
+.endgame {
+    /* display: none; */
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12rem;
+    height: 6rem;
+    background-color: #5050ff75;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 2rem;
+}
