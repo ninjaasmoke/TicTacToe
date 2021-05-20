@@ -26,7 +26,7 @@ function startGame() {
     for (let i = 0; i < cells.length; i++) {
         cells[i].innerText = "";
         cells[i].style.removeProperty('background-color');
-        cells[i].addEventListener('click', turnClick);
+        cells[i].addEventListener('click', turnClick, false);
     }
 }
 
@@ -165,7 +165,7 @@ function minimax(newBoard, player) {
 
     var bestMove;
     if (player === aiPlayer) {
-        var bestScore = -10000;
+        var bestScore = -1000; // reduced from -10000, since lowest score is -900
         for (var i = 0; i < moves.length; i++) {
             if (moves[i].score > bestScore) {
                 bestScore = moves[i].score;
@@ -173,7 +173,7 @@ function minimax(newBoard, player) {
             }
         }
     } else {
-        var bestScore = 10000;
+        var bestScore = 1000; // reduced from 10000, since highest score is 900
         for (var i = 0; i < moves.length; i++) {
             if (moves[i].score < bestScore) {
                 bestScore = moves[i].score;
