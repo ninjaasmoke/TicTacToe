@@ -82,16 +82,27 @@ function checkWin(board, player) {
 // gameover function
 function gameOver(gameWon) {
 
-    for (const index of winCombos[gameWon.index]) {
+    let huPlayerWon = gameWon.player == huPlayer;
+
+    for (const index of winCombos[gameWon.index]) { // updating winning squares
         let d = document.getElementById(index)
         d.style.backgroundColor =
-            gameWon.player == huPlayer ? '#4078c0' : 'red';
+            huPlayerWon ? '#4078c0' : 'red';
     }
 
     for (let i = 0; i < cells.length; i++) {
         cells[i].removeEventListener('click', turnClick, false);
     }
-    declareWinner(gameWon.player == huPlayer ? 'You Win!' : 'You Lose!')
+
+    if (huPlayerWon) {
+        let huScore = document.querySelector('.huScore').innerText;
+        document.querySelector('.huScore').innerText = parseInt(huScore) + 1;
+    } else {
+        let aiScore = document.querySelector('.aiScore').innerText;
+        document.querySelector('.aiScore').innerText = parseInt(aiScore) + 1;
+    }
+
+    declareWinner(huPlayerWon ? 'You Win!' : 'You Lose!')
 
 }
 
