@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tic Tac Toe</title>
-
+    <title>Tic Tac Toe | 4 x 4</title>
     <link rel="stylesheet" href="./style.css" />
 </head>
 
 <body>
+
     <div class="container">
         <div class="scores">
             <span>Human:</span>
@@ -20,26 +20,35 @@
         </div>
         <table>
             <tr>
-                <td class="cell" id="0"></td>
-                <td class="cell" id="1"></td>
-                <td class="cell" id="2"></td>
+                <td class="cell" id="f0"></td>
+                <td class="cell" id="f1"></td>
+                <td class="cell" id="f2"></td>
+                <td class="cell" id="f3"></td>
             </tr>
             <tr>
-                <td class="cell" id="3"></td>
-                <td class="cell" id="4"></td>
-                <td class="cell" id="5"></td>
+                <td class="cell" id="f4"></td>
+                <td class="cell" id="f5"></td>
+                <td class="cell" id="f6"></td>
+                <td class="cell" id="f7"></td>
             </tr>
             <tr>
-                <td class="cell" id="6"></td>
-                <td class="cell" id="7"></td>
-                <td class="cell" id="8"></td>
+                <td class="cell" id="f8"></td>
+                <td class="cell" id="f9"></td>
+                <td class="cell" id="f10"></td>
+                <td class="cell" id="f11"></td>
+            </tr>
+            <tr>
+                <td class="cell" id="f12"></td>
+                <td class="cell" id="f13"></td>
+                <td class="cell" id="f14"></td>
+                <td class="cell" id="f15"></td>
             </tr>
         </table>
         <div class="endgame">
             <div class="text"></div>
         </div>
         <div class="bottom">
-            <a id="goto4" href="./4x4.html" title="Harder Version">Play 4x4</a>
+            <a id="goto4" href="/" title="Simpler Version">Play 3x3</a>
             <button onclick="startGame()">Replay</button>
         </div>
         <a href="https://github.com/ninjaasmoke/TicTacToe/blob/main/README.md" target="_blank" class="gh">
@@ -47,8 +56,7 @@
             Read more
         </a>
     </div>
-</body>
 
-<script src="./app.js"></script>
+</body>
 
 </html>
