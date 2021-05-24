@@ -33,6 +33,9 @@ let scores = {
 
 function minimax(board, depth, isMaximizing, n, a = -Infinity, b = Infinity) {
     let result = checkWinner();
+    if (depth == 8) {
+        return scores['tie'];
+    }
     if (result !== null) {
         return scores[result];
     }
