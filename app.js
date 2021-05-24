@@ -145,12 +145,12 @@ function checkTie() {
 
 // minimax 
 
-function minimax(newBoard, player, a = 0, b = 0) {
+function minimax(newBoard, player, depth = 10, a = -1000, b = 1000) { // depth 1 greater than total squares
     let availSpots = emptySquares();
 
     if (checkWin(newBoard, huPlayer)) {
         return { score: -10 };
-    } else if (checkWin(newBoard, aiPlayer)) {
+    } else if (checkWin(newBoard, aiPlayer) || depth == 0) {
         return { score: 10 };
     } else if (availSpots.length === 0) {
         return { score: 0 };
@@ -163,12 +163,12 @@ function minimax(newBoard, player, a = 0, b = 0) {
         newBoard[availSpots[i]] = player;
 
         if (player == aiPlayer) {
-            var result = minimax(newBoard, huPlayer);
+            var result = minimax(newBoard, huPlayer, depth - 1, a, b);
             move.score = result.score;
             a = Math.max(a, result);
             if (b <= a) break;
         } else {
-            var result = minimax(newBoard, aiPlayer);
+            var result = minimax(newBoard, aiPlayer, depth - 1, a, b);
             move.score = result.score;
             b = Math.min(b, result);
             if (b <= a) break;
