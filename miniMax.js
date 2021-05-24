@@ -16,10 +16,13 @@ function bestMove() {
             }
         }
     }
-    board[move.i][move.j] = ai;
-    const id = move.j * 3 + move.i;
-    document.getElementById(id).innerText = ai;
-    currentPlayer = human;
+    if (!updateRes(checkWinner())) {
+        board[move.i][move.j] = ai;
+        const id = move.j * 3 + move.i;
+        document.getElementById(id).innerText = ai;
+        currentPlayer = human;
+    }
+    updateRes(checkWinner());
 }
 
 let scores = {

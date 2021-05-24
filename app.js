@@ -18,19 +18,19 @@ function startGame() {
         ['', '', ''],
         ['', '', '']
     ];
+    document.querySelector('.endgame').style.display = 'none';
     for (let i = 0; i < cells.length; i++) {
         cells[i].innerText = "";
         cells[i].style.removeProperty('background-color');
         cells[i].addEventListener('click', clicked, false);
     }
-    bestMove(); // ai goes first
+    // bestMove(); // ai goes first
 }
 
 startGame();
 
 function clicked(square) {
     let id = parseInt(square.target.id)
-    console.log(id)
     let i = id % 3;
     let j = Math.floor(id / 3);
     if (board[i][j] == '') {
@@ -84,5 +84,43 @@ function checkWinner() {
         return 'tie';
     } else {
         return winner;
+    }
+}
+
+function updateRes(res) {
+    if (res == 'X') {
+        scoreUpdate('You Lose!', 'aiScore', '#e43d34');
+        return true;
+    } else if (res == 'O') {
+        scoreUpdate('Ypu Win!', 'huScore', '#4078c0');
+        return true;
+    } else {
+        let es = 0;
+        for (let i = 0; i < cells.length; i++) {
+            if (cells[i].innerText === '') {
+                es++;
+            }
+        }
+        if (es === 0) {
+            document.querySelector('.endgame').style.display = "block";
+            document.querySelector('.endgame .text').innerText = 'Tie Game!';
+            for (let i = 0; i < cells.length; i++) {
+                cells[i].style.backgroundColor = "#6e5494";
+                cells[i].removeEventListener('click', clicked, false);
+            }
+            return true;
+        }
+    }
+    return false;
+}
+
+function scoreUpdate(msg, score, color) {
+    document.querySelector('.endgame').style.display = "block";
+    document.querySelector('.endgame .text').innerText = msg;
+    let sc = document.querySelector(`.${score}`).innerText;
+    document.querySelector(`.${score}`).innerText = parseInt(sc) + 1;
+    for (let i = 0; i < cells.length; i++) {
+        cells[i].style.backgroundColor = color;
+        cells[i].removeEventListener('click', clicked, false);
     }
 }
