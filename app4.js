@@ -23,7 +23,7 @@ function startGame() {
         cells[i].style.removeProperty('background-color');
         cells[i].addEventListener('click', clicked, false);
     }
-    bestMove(); // ai goes first
+    bestMove(1); // ai goes first
 }
 
 startGame();
@@ -37,10 +37,10 @@ function clicked(square) {
         const id = j * 4 + i;
         document.getElementById(id).innerText = human;
         currentPlayer = ai;
-        // let start = window.performance.now()
+        let start = window.performance.now();
         bestMove(4);
-        // let end = window.performance.now()
-        // console.log("Time taken :", end - start)
+        let end = window.performance.now();
+        console.log("Time taken per move:", end - start);
     }
 }
 
