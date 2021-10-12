@@ -23,3 +23,6 @@ With increase in number of possible moves, the time complexity increases exponen
 ### Installation & Playing
 Visit [this link](http://ninjaasmoke.tech/TicTacToe/) to play the game. <br/>
 Download or clone this repo, open ```index.html``` file in a live server.
+
+
+[Presentation](https://docs.google.com/presentation/d/1zhfkGHq7OYgKbAhGlRFg9lMhp2SmFAPFciv35jFu2hk/edit?usp=sharing)
